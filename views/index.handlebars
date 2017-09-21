@@ -11,8 +11,22 @@
       <h3 class="listheader">New Burgers</h3>
 
       <div class="burgerlist">
+
         {{#each burgerlist}}
-        <h3>Name: {{this.name}}</h3>
+          {{#unless this.eaten}}
+        <div class="burger pure-g">
+          <div class="pure-u-1-2">
+            <h3>{{this.burger_name}}</h3>
+          </div>
+          <div class="pure-u-1-2">
+            <form class="" action="/api/eat/{{this.id}}?_method=PUT" method="post">
+              <button class="pure-button" type="submit">
+                <img class="eat-icon" src="/assets/img/eat-icon.svg"></img>
+              </button>
+            </form>
+          </div>
+        </div>
+          {{/unless}}
         {{/each}}
 
       </div>
@@ -24,7 +38,16 @@
       <h3 class="listheader">Eaten Burgers</h3>
 
       <div class="burgerlist">
+        {{#each burgerlist}}
+        {{#if this.eaten}}
 
+        <div class="burger pure-g">
+          <div class="pure-u-1-2">
+            <h3>{{this.burger_name}}</h3>
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
       </div>
     </div>
   </div>

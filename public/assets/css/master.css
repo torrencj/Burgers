@@ -20,6 +20,13 @@ body {
     height: auto;
 }
 
+.eat-icon {
+  display: inline-block;
+  width: 16.3px;
+  height: 13.45px;
+  overflow: hidden;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */

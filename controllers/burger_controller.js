@@ -11,11 +11,10 @@ var burger = require("../models/burger.js");
 //html routes
 router.get('/', (req, res) => {
   burger.all(burgerlist => {
-    console.log(burgerlist);
-    res.render('index', burgerlist)
+    // console.log(burgerlist);
+    res.render('index', {burgerlist: burgerlist})
   })
 })
-
 
 //api routes
 router.post('/api/new', (req, res) => {
@@ -23,11 +22,14 @@ router.post('/api/new', (req, res) => {
   burger.create('burger_name', [req.body.name], function() {
     res.redirect('/');
   });
-  // res.redirect('/');
 })
 
-router.post('/api/eat', (req, res) => {
-
+router.put('/api/eat/:id', (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+  burger.update({eaten: 1}, 'id = '+req.params.id, function() {
+    res.redirect('/');
+  });
 })
 
 // Export routes for server.js to use.
